@@ -1,7 +1,8 @@
 {
   "imports": {
+    "testing/": "https://deno.land/std@0.170.0/testing/",
     "/types/": "./types/",
     "/lib/": "./lib/",
-    "testing/": "https://deno.land/std@0.170.0/testing/"
+    "/constants": "./constants.ts"
   }
 }
