@@ -1,6 +1,7 @@
 {
   "imports": {
-    "/": "./",
-    "./": "./"
+    "/types": "./types",
+    "/lib": "./lib",
+    "testing/": "https://deno.land/std@0.170.0/testing/"
   }
 }
