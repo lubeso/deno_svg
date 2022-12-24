@@ -23,9 +23,9 @@ const svg = SVG.createElement({
         "x": "400px",
         "y": "400px",
       },
-      children: ["Hello world!"];
-    }
-  ]
+      children: ["Hello world!"],
+    },
+  ],
 });
 
 const text = SVG.toString(svg);
