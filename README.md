@@ -7,7 +7,7 @@ Provides types and methods for representing SVG elements.
 ## Example
 
 ```ts
-import SVG from "https://raw.githubusercontent.com/lubeso/deno-svg/mod.ts";
+import SVG from "https://raw.githubusercontent.com/lubeso/deno-svg/main/mod.ts";
 
 const svg = SVG.createElement({
   tagName: "svg",
