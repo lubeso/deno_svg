@@ -1,6 +1,8 @@
 import { describe, it } from "testing/bdd";
 import { assertStrictEquals } from "testing/asserts";
 import type { ElementReference } from "/types/element_reference.ts";
+import { join } from "/utils/join.ts";
+import { indent } from "/utils/indent.ts";
 import { toString } from "/core/to_string.ts";
 
 const TAG_NAME = "text";
@@ -22,7 +24,7 @@ describe("toString()", () => {
     // act
     const actual = toString(ref);
     // assert
-    const expected = `<${TAG_NAME}></${TAG_NAME}`;
+    const expected = `<${TAG_NAME}></${TAG_NAME}>`;
     assertStrictEquals(actual, expected);
   });
   it("element has >0 attributes and =0 children", () => {
@@ -36,8 +38,8 @@ describe("toString()", () => {
     const expected = join(
       NEWLINE,
       `<${TAG_NAME}`,
-      indent(`data-test="0"`, 1),
-      indent(`data-test="1"`, 1),
+      indent(`data-test-0="0"`, 1),
+      indent(`data-test-1="1"`, 1),
       `></${TAG_NAME}>`,
     );
     assertStrictEquals(actual, expected);
@@ -53,10 +55,12 @@ describe("toString()", () => {
     const expected = join(
       NEWLINE,
       `<${TAG_NAME}`,
-      indent(`data-test="0"`, 1),
+      indent(`data-test-0="0"`, 1),
       `>`,
       indent("Hello", 1),
-      indent(`<tspan> world!</tspan>`, 1),
+      indent("<tspan>", 1),
+      indent(" world!", 2),
+      indent("</tspan>", 1),
       `</${TAG_NAME}>`,
     );
     assertStrictEquals(actual, expected);
@@ -73,30 +77,11 @@ describe("toString()", () => {
       NEWLINE,
       `<${TAG_NAME}>`,
       indent("Hello", 1),
-      `</${TAG_NAME}`,
+      `</${TAG_NAME}>`,
     );
     assertStrictEquals(actual, expected);
   });
 });
-
-/**
- * Helper function for concatenating a collection of strings.
- * @param glue string to put in between each piece
- * @param pieces the strings to join
- */
-function join(glue: string, ...pieces: string[]): string {
-  return pieces.join(glue);
-}
-
-/**
- * Helper function for indenting text by a certain amount.
- * @param text text to indent
- * @param depth indent level
- * @param indentation indentation string (defaults to two whitespace characters)
- */
-function indent(text: string, depth: number, indentation = "  "): string {
-  return `${indentation.repeat(depth)}${text}`;
-}
 
 /**
  * Configuration object for use when generating new element references.
