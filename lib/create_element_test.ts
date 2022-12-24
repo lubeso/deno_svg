@@ -1,6 +1,6 @@
 import { describe, it } from "testing/bdd.ts";
 import { assertStrictEquals } from "testing/asserts.ts";
-import { createElement } from "./create_element.ts";
+import { createElement } from "/lib/create_element.ts";
 
 /** Testing strategy
  * - tag name is 'svg'
