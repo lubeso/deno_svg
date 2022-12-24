@@ -22,7 +22,7 @@ const svg = SVG.createElement({
         "text-anchor": "middle",
         "x": "400px",
         "y": "400px",
-      }
+      },
       children: ["Hello world!"];
     }
   ]
