@@ -116,5 +116,32 @@ interface GeneratorOptions {
  * Helper method for creating new element references.
  */
 function generateElement(options: GeneratorOptions): ElementReference {
-  throw new Error("not implemented yet");
+  // arrange
+  const { numAttributes, numChildren } = options;
+  const entries: [string, string][] = [];
+  const children: (string | ElementReference)[] = [];
+  // act
+  // generate attributes
+  for (let i = 0; i < numAttributes; i++) {
+    entries.push([`data-test-${i}`, `${i}`]);
+  }
+  const attributes = Object.fromEntries(entries);
+  // generate children
+  for (let j = 0; j < numChildren; j++) {
+    if (j === 1) {
+      children.push({
+        tagName: "tspan",
+        attributes: {},
+        children: [" world!"],
+      });
+    } else {
+      children.push("Hello");
+    }
+  }
+  // return
+  return {
+    tagName: TAG_NAME,
+    attributes,
+    children,
+  };
 }
