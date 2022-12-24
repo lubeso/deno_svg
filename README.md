@@ -1,5 +1,7 @@
 # SVG
 
+![Tests](https://github.com/lubeso/deno-svg/actions/workflows/tests.yml/badge.svg)
+
 Provides types and methods for representing SVG elements.
 
 ## Example
