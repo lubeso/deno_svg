@@ -1,8 +1,9 @@
 {
   "imports": {
-    "testing/": "https://deno.land/std@0.170.0/testing/",
+    "/constants/": "./constants/",
+    "/core/": "./core/",
     "/types/": "./types/",
-    "/lib/": "./lib/",
-    "/constants": "./constants.ts"
+    "testing/bdd": "https://deno.land/std@0.170.0/testing/bdd.ts",
+    "testing/asserts": "https://deno.land/std@0.170.0/testing/asserts.ts"
   }
 }
