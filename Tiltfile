@@ -1,1 +1,1 @@
-local_resource("tests", cmd="deno test", deps=["lib"])
+local_resource("tests", cmd="deno test", deps=["core"])
