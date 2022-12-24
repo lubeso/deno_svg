@@ -3,6 +3,7 @@
     "/constants/": "./constants/",
     "/core/": "./core/",
     "/types/": "./types/",
+    "/utils/": "./utils/",
     "testing/bdd": "https://deno.land/std@0.170.0/testing/bdd.ts",
     "testing/asserts": "https://deno.land/std@0.170.0/testing/asserts.ts"
   }
