@@ -1,6 +1,6 @@
-import type { ElementConfig } from "/types/element_config.ts";
-import type { ElementReference } from "/types/element_reference.ts";
-import { SVG_NAMESPACE_URI } from "/constants/svg_namespace_uri.ts";
+import type { ElementConfig } from "../types/element_config.ts";
+import type { ElementReference } from "../types/element_reference.ts";
+import { SVG_NAMESPACE_URI } from "../constants/svg_namespace_uri.ts";
 
 /**
  * Create a new immutable SVG element reference.
