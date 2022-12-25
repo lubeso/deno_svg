@@ -2,7 +2,7 @@ import { describe, it } from "testing/bdd";
 import { assertEquals } from "testing/asserts";
 import type { ElementReference } from "../types/element_reference.ts";
 import type { ElementConfig } from "../types/element_config.ts";
-import { SVG_NAMESPACE_URI } from "../constants/svg_namespace_uri.ts";
+import { NAMESPACE_URI } from "../constants/namespace_uri.ts";
 import { createElement } from "./create_element.ts";
 
 /** Testing strategy
@@ -22,7 +22,7 @@ describe("createElement()", () => {
     // assert
     const expected: ElementReference = {
       tagName,
-      attributes: { "xmlns": SVG_NAMESPACE_URI },
+      attributes: { "xmlns": NAMESPACE_URI },
       children: [],
     };
     assertEquals(actual, expected);

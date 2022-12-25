@@ -1,6 +1,6 @@
 import type { ElementConfig } from "../types/element_config.ts";
 import type { ElementReference } from "../types/element_reference.ts";
-import { SVG_NAMESPACE_URI } from "../constants/svg_namespace_uri.ts";
+import { NAMESPACE_URI } from "../constants/namespace_uri.ts";
 
 /**
  * Create a new immutable SVG element reference.
@@ -29,7 +29,7 @@ function parseAttributes(
   const { tagName } = config;
   // act
   const attributes: ElementReference["attributes"] = (tagName === "svg")
-    ? { xmlns: SVG_NAMESPACE_URI }
+    ? { xmlns: NAMESPACE_URI }
     : {};
   // return
   return (config.attributes)
