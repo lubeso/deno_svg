@@ -1,9 +1,9 @@
 import { describe, it } from "testing/bdd";
 import { assertStrictEquals } from "testing/asserts";
-import type { ElementReference } from "/types/element_reference.ts";
-import { join } from "/utils/join.ts";
-import { indent } from "/utils/indent.ts";
-import { toString } from "/core/to_string.ts";
+import type { ElementReference } from "../types/element_reference.ts";
+import { join } from "../utils/join.ts";
+import { indent } from "../utils/indent.ts";
+import { toString } from "./to_string.ts";
 
 const TAG_NAME = "text";
 const NEWLINE = "\n";

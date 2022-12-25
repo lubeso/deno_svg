@@ -3,9 +3,15 @@ name: Tests
 on:
   push:
     branches:
-      - "main"
+      - main
+  pull_request:
+    branches:
+      - main
     paths:
-      - "core/**"
+      - constants/**
+      - core/**
+      - types/**
+      - utils/**
 
 jobs:
   tests:
