@@ -6,43 +6,35 @@ import { NAMESPACE_URI } from "../constants/namespace_uri.ts";
  * Create a new immutable SVG element reference.
  */
 export function createElement(config: ElementConfig): ElementReference {
-  // arrange
-  const { tagName } = config;
-  // act
-  const attributes = parseAttributes(config);
-  const children = parseChildren(config);
-  // return
   return {
-    tagName,
-    attributes,
-    children,
+    tagName: config.tagName,
+    attributes: readAttributes(config),
+    children: readChildren(config),
   };
 }
 
 /**
- * Helper function for parsing attribute key-value pairs from an element configuration object.
+ * Helper function for reading attribute key-value pairs from an element 
+ * configuration object.
  */
-function parseAttributes(
-  config: ElementConfig,
-): ElementReference["attributes"] {
+function readAttributes(config: ElementConfig): Record<string, string> {
   // arrange
-  const { tagName } = config;
+  const customAttributes = config.attributes ?? {};
   // act
-  const attributes: ElementReference["attributes"] = (tagName === "svg")
+  const defaultAttributes = (config.tagName === "svg")
     ? { xmlns: NAMESPACE_URI }
     : {};
   // return
-  return (config.attributes)
-    ? Object.assign(attributes, config.attributes)
-    : attributes;
+  return Object.assign(defaultAttributes, customAttributes);
 }
 
 /**
- * Helper function for parsing text content or child elements from an element configuration object.
+ * Helper function for reading text content or child elements from an 
+ * element configuration object.
  */
-function parseChildren(config: ElementConfig): ElementReference["children"] {
+function readChildren(config: ElementConfig): (string | ElementReference)[] {
   // arrange
-  const children: ElementReference["children"] = [];
+  const children: (string | ElementReference)[] = [];
   // act
   for (const child of config.children ?? []) {
     if (typeof child === "string") {

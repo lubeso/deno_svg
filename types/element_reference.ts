@@ -1,5 +1,5 @@
 /**
- * Interface type for describing any SVG element.
+ * Concrete interface type representing a SVG element.
  */
 export interface ElementReference {
   /**
@@ -15,3 +15,4 @@ export interface ElementReference {
    */
   children: (string | ElementReference)[];
 }
+
