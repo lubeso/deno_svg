@@ -1,19 +1,18 @@
-import type { ElementReference } from "./element_reference.ts";
-
 /**
- * Convenience type for describing any SVG element configuration.
+ * Convenience interface type describing a SVG element.
  */
 export interface ElementConfig {
   /**
    * Qualified name.
    */
-  tagName: ElementReference["tagName"];
+  tagName: keyof SVGElementTagNameMap;
   /**
    * Optional attribute key-value pairs.
    */
-  attributes?: ElementReference["attributes"];
+  attributes?: Record<string, string>;
   /**
    * Optional text content or child elements.
    */
   children?: (string | ElementConfig)[];
 }
+
