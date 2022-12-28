@@ -14,22 +14,33 @@ export function toString(ref: ElementReference, depth = 0): string {
   return str;
 }
 
+ /**
+  * Helper function for creating a string representation of the 
+  * opening tag for the SVG element represented by the given 
+  * reference object.
+  */
 function parseOpeningTag(ref: ElementReference, depth: number): string {
   // arrange
+  const { tagName } = ref;
   let str = indent("", depth);
   // act
-  str += `<${ref.tagName}`;
+  str += `<${tagName}`;
   str += parseAttributes(ref, depth);
   str += ">";
   // return
   return str;
 }
 
+ /**
+  * Helper function for creating a string representation of the 
+  * closing tag for the SVG element represented by the given 
+  * reference object.
+  */
 function parseAttributes(ref: ElementReference, depth: number): string {
   // arrange
-  let str = "";
   const { attributes } = ref;
   const entries = Object.entries(attributes);
+  let str = "";
   // act
   for (let i = 0; i < entries.length; i++) {
     const [key, value] = entries[i];
@@ -45,19 +56,22 @@ function parseAttributes(ref: ElementReference, depth: number): string {
   return str;
 }
 
+ /**
+  * Helper function for creating a string representation of the 
+  * text content or nested child elements for the SVG element 
+  * represented by the given reference object.
+  */
 function parseChildren(ref: ElementReference, depth: number): string {
   // arrange
-  let str = "";
   const { children } = ref;
+  let str = "";
   // act
   for (let i = 0; i < children.length; i++) {
     const child = children[i];
     str += "\n";
-    if (typeof child === "string") {
-      str += indent(child, depth + 1);
-    } else {
-      str += toString(child, depth + 1);
-    }
+    str += (typeof child === "string")
+      ? indent(child, depth + 1)
+      : toString(child, depth + 1);
   }
   if (children.length > 0) {
     // move to new line
@@ -68,6 +82,11 @@ function parseChildren(ref: ElementReference, depth: number): string {
   return str;
 }
 
+ /**
+  * Helper function for creating a string representation of the 
+  * attribute key-value pairs for the SVG element represented 
+  * by the given reference object.
+  */
 function parseClosingTag(ref: ElementReference): string {
   return `</${ref.tagName}>`;
 }
