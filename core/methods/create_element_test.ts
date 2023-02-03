@@ -53,7 +53,7 @@ describe("createElement()", () => {
   it("definition specifies some children", () => {
     // arrange
     const definition = createElementDefinition({
-      tagName: "g",
+      tagName: "text",
       hasAttributes: false,
       hasChildren: true,
     });
@@ -92,13 +92,11 @@ describe("createElement()", () => {
 /**
  * Configuration settings for creating a new element definition.
  */
-interface CreateElementDefinitionOptions<
-  TagName extends keyof SVGElementTagNameMap & ("svg" | "g"),
-> {
+interface CreateElementDefinitionOptions {
   /**
    * Desired element definition tag name.
    */
-  tagName: TagName;
+  tagName: keyof SVGElementTagNameMap;
   /**
    * Whether this element definition should specify attributes.
    */
@@ -112,11 +110,9 @@ interface CreateElementDefinitionOptions<
 /**
  * Create a new element definition according to the specified options.
  */
-function createElementDefinition<
-  TagName extends keyof SVGElementTagNameMap & ("svg" | "g"),
->(
-  options: CreateElementDefinitionOptions<TagName>,
-): ElementDefinition<TagName> {
+function createElementDefinition(
+  options: CreateElementDefinitionOptions,
+): ElementDefinition<keyof SVGElementTagNameMap> {
   return {
     tagName: options.tagName,
     attributes: options.hasAttributes ? { "data-test": "test" } : undefined,
