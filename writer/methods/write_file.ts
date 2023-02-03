@@ -1,4 +1,6 @@
 import type { ElementReference } from "../../core/types/element_reference.ts";
+import { toString } from "../../utils/methods/to_string.ts";
+import { join } from "@std:path/mod.ts";
 
 /**
  * Required options for writing an element reference to a file
@@ -20,8 +22,16 @@ export interface WriteFileOptions {
 export async function writeFile(
   reference: ElementReference<"svg">,
   options?: Partial<WriteFileOptions>,
-): Promise<void> {
-  throw new Error("not implemented yet");
+): Promise<string> {
+  // arrange
+  const defaultOptions = getDefaultWriteFileOptions();
+  const { directory, filename } = Object.assign(defaultOptions, options);
+  // act
+  const text = toString(reference);
+  const path = join(directory, filename);
+  await Deno.writeTextFile(path, text);
+  // return
+  return path;
 }
 
 /**
@@ -47,5 +57,5 @@ function getDefaultFilename(): string {
  * Helper function for creating a default output directory.
  */
 function getDefaultDirectory(): string {
-  return Deno.cwd();
+  return ".";
 }
