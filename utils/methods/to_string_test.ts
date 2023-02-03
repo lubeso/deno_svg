@@ -22,7 +22,7 @@ describe("createElement()", () => {
     // act
     const str = toString(reference);
     // assert
-    assertEquals(str, `<g><g>`);
+    assertEquals(str, `<g></g>`);
   });
   it("definition specifies some attributes", () => {
     // arrange
@@ -34,7 +34,7 @@ describe("createElement()", () => {
     // act
     const str = toString(reference);
     // assert
-    assertEquals(str, `<g\n  data-test="test"\n><g>`);
+    assertEquals(str, `<g\n  data-test="test"\n></g>`);
   });
   it("definition specifies no children", () => {
     // arrange
@@ -46,7 +46,7 @@ describe("createElement()", () => {
     // act
     const str = toString(reference);
     // assert
-    assertEquals(str, `<g><g>`);
+    assertEquals(str, `<g></g>`);
   });
   it("definition specifies some children", () => {
     // arrange
@@ -58,7 +58,7 @@ describe("createElement()", () => {
     // act
     const str = toString(reference);
     // assert
-    assertEquals(str, `<text>\n  test<text>`);
+    assertEquals(str, `<text>\n  test\n</text>`);
   });
 });
 
