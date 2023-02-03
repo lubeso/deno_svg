@@ -36,7 +36,7 @@ describe("createElement()", () => {
     // act
     const reference = createElement(definition);
     // assert
-    assertEquals(reference.attributes, { "data-test": "test" });
+    assertEquals(reference.attributes, definition.attributes);
   });
   it("definition specifies no children", () => {
     // arrange
@@ -60,10 +60,19 @@ describe("createElement()", () => {
     // act
     const reference = createElement(definition);
     // assert
-    assertEquals(reference.children.length, 1);
-    for (const child of reference.children) {
-      assertEquals(typeof child, "string");
-      assertEquals(child, "test");
+    if (definition.children) {
+      assertEquals(reference.children.length, definition.children.length);
+      for (let i = 0; i < reference.children.length; i++) {
+        const actual = reference.children[i];
+        const expected = definition.children[i];
+        if (typeof expected === "string") {
+          assertEquals(actual, expected);
+        } else {
+          assertEquals(actual, createElement(expected));
+        }
+      }
+    } else {
+      throw new Error("Should never get here!");
     }
   });
   it('definition tag name is "svg"', () => {
@@ -106,7 +115,11 @@ interface CreateElementDefinitionOptions<
 function createElementDefinition<
   TagName extends keyof SVGElementTagNameMap & ("svg" | "g"),
 >(
-  _options: CreateElementDefinitionOptions<TagName>,
+  options: CreateElementDefinitionOptions<TagName>,
 ): ElementDefinition<TagName> {
-  throw new Error("not implemented yet");
+  return {
+    tagName: options.tagName,
+    attributes: options.hasAttributes ? { "data-test": "test" } : undefined,
+    children: options.hasChildren ? ["test"] : undefined,
+  };
 }
