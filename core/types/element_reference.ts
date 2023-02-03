@@ -11,7 +11,7 @@ export interface ElementReference<TagName extends keyof SVGElementTagNameMap> {
    */
   attributes: Record<string, string>;
   /**
-   * Child elements in order of appearance.
+   * A list of child elements or text content in order of appearance.
    */
-  children: ElementReference<keyof SVGElementTagNameMap>[];
+  children: (string | ElementReference<keyof SVGElementTagNameMap>)[];
 }
