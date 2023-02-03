@@ -50,7 +50,7 @@ function getDefaultWriteFileOptions(): WriteFileOptions {
 function getDefaultFilename(): string {
   const uuid = crypto.randomUUID();
   const [prefix, ..._rest] = uuid.split("-");
-  return prefix;
+  return `${prefix}.svg`;
 }
 
 /**
