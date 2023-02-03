@@ -23,10 +23,15 @@ jobs:
           deno-version: "1.29.1"
       - name: Run core tests
         run: |
-          deno test $(ls core/**/*_test.ts)
+          deno test \
+          $(ls core/**/*_test.ts)
       - name: Run utilities tests
         run: |
-          deno test $(ls utils/**/*_test.ts)
+          deno test \
+          $(ls utils/**/*_test.ts)
       - name: Run writer tests
         run: |
-          deno test $(ls writer/**/*_test.ts)
+          deno test \
+            --allow-write \
+            --allow-read \
+            $(ls writer/**/*_test.ts)
