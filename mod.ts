@@ -3,3 +3,5 @@
  */
 
 export * from "./core/mod.ts";
+export * from "./utils/mod.ts";
+export * from "./writer/mod.ts";
