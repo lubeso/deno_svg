@@ -8,10 +8,7 @@ on:
     branches:
       - main
     paths:
-      - constants/**
-      - core/**
-      - types/**
-      - utils/**
+      - "**/*.ts"
 
 jobs:
   tests:
@@ -24,6 +21,12 @@ jobs:
         uses: denoland/setup-deno@v1
         with:
           deno-version: "1.29.1"
-      - name: Run tests
+      - name: Run core tests
         run: |
-          deno test
+          deno test $(ls core/**/*_test.ts)
+      - name: Run utilities tests
+        run: |
+          deno test $(ls utils/**/*_test.ts)
+      - name: Run writer tests
+        run: |
+          deno test $(ls writer/**/*_test.ts)
