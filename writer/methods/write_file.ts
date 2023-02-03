@@ -1,6 +1,6 @@
 import type { ElementReference } from "../../core/types/element_reference.ts";
 import { toString } from "../../utils/methods/to_string.ts";
-import { join } from "@std:path/mod.ts";
+import { join } from "https://deno.land/std@0.170.0/path/mod.ts";
 
 /**
  * Required options for writing an element reference to a file
