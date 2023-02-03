@@ -2,7 +2,7 @@ import type { ElementReference } from "../../core/types/element_reference.ts";
 import { createElement } from "../../core/methods/create_element.ts";
 import { toString } from "../../utils/methods/to_string.ts";
 import { writeFile } from "./write_file.ts";
-import { beforeAll, describe, it } from "@std:testing/bdd.ts";
+import { afterAll, beforeAll, describe, it } from "@std:testing/bdd.ts";
 import { assertEquals } from "@std:testing/asserts.ts";
 
 /** Testing strategy
@@ -15,14 +15,16 @@ describe("writeFile()", () => {
   beforeAll(async () => {
     directory = directory ?? await Deno.makeTempDir();
   });
+  afterAll(async () => {
+    await Deno.remove(directory, { recursive: true });
+  });
   it("output file contents are correct", async () => {
     // arrange
     const reference = createElementReference();
-    const filename = crypto.randomUUID();
     // act
-    await writeFile(reference, { filename, directory });
+    const path = await writeFile(reference, { directory });
     // assert
-    const actual = await Deno.readTextFile(`${directory}/${filename}.svg`);
+    const actual = await Deno.readTextFile(path);
     const expected = toString(reference);
     assertEquals(actual, expected);
   });
