@@ -7,21 +7,29 @@ Provides types and methods for representing SVG elements.
 ## Example
 
 ```ts
-import SVG from "https://raw.githubusercontent.com/lubeso/deno_svg/main/mod.ts";
+import * as SVG from "https://raw.githubusercontent.com/lubeso/deno_svg/main/mod.ts";
 
 const svg = SVG.createElement({
   tagName: "svg",
   attributes: {
-    "width": "800px",
-    "height": "800px",
+    "width": "1200px",
+    "height": "1200px",
   },
   children: [
     {
+      tagName: "style",
+      children: [
+        `text {`,
+        `  font-size: 10rem;`,
+        `}`,
+      ],
+    },
+    {
       tagName: "text",
       attributes: {
+        "x": "50%",
+        "y": "50%",
         "text-anchor": "middle",
-        "x": "400px",
-        "y": "400px",
       },
       children: ["Hello world!"],
     },
@@ -29,8 +37,10 @@ const svg = SVG.createElement({
 });
 
 const text = SVG.toString(svg);
+console.info({ text });
 
-await Deno.writeTextFile("output.svg", text);
+const path = await SVG.writeFile(svg);
+console.info({ path });
 ```
 
 The contents of the output SVG file should match the following codeblock:
@@ -38,13 +48,18 @@ The contents of the output SVG file should match the following codeblock:
 ```svg
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  width="800px"
-  height="800px"
+  width="1200px"
+  height="1200px"
 >
+  <style>
+    text {
+      font-size: 30rem;
+    }
+  </style>
   <text
+    x="50%"
+    y="50%"
     text-anchor="middle"
-    x="400px"
-    y="400px"
   >
     Hello world!
   </text>
