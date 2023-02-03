@@ -1,8 +1,17 @@
-import type { ElementReference } from "./element_reference.ts";
-
 /**
  * Represents an immutable definition for a SVG element.
  */
-export type ElementDefinition<TagName extends keyof SVGElementTagNameMap> =
-  & Pick<ElementReference<TagName>, "tagName"> // tagName is required
-  & Partial<Omit<ElementReference<TagName>, "tagName">>; // rest are optional
+export interface ElementDefinition<TagName extends keyof SVGElementTagNameMap> {
+  /**
+   * Desired element tag name.
+   */
+  tagName: TagName;
+  /**
+   * Desired element attributes.
+   */
+  attributes?: Record<string, string>;
+  /**
+   * Desired element children.
+   */
+  children?: (string | ElementDefinition<keyof SVGElementTagNameMap>)[];
+}
