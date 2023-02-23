@@ -1,3 +1,12 @@
 {
-  "tasks": {}
+  "tasks": {},
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable",
+      "deno.ns"
+    ]
+  }
 }
