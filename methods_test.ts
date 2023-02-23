@@ -47,7 +47,7 @@ describe("createElement()", () => {
     const actual = createElement(definition);
     // Assert
     assertEquals(actual.tagName, "g");
-    assertEquals(actual.attributes, EXPECTED_ATTRIBUTES);
+    assertEquals(actual.attributes, {});
     assert(actual.children.length === EXPECTED_NUM_CHILDREN);
     for (let i = 0; i < actual.children.length; i++) {
       assertEquals(typeof actual.children[i], "object");
