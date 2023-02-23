@@ -106,7 +106,25 @@ const EXPECTED_NUM_CHILDREN = 3;
  * For testing purposes only.
  */
 function createElementDefinition(
-  _options: CreateElementDefinitionOptions,
+  options: CreateElementDefinitionOptions,
 ): ElementDefinition {
-  throw new Error("not implemented yet");
+  // Arrange
+  const {
+    hasAttributes,
+    hasChildren,
+  } = options;
+  // Act
+  const attributes = hasAttributes ? { "data-test": "test" } : undefined;
+  const children = hasChildren ? new Array<ElementDefinition>() : undefined;
+  if (hasChildren) {
+    for (let i = 0; i < EXPECTED_NUM_CHILDREN; i++) {
+      children!.push({ tagName: "g" });
+    }
+  }
+  // Return
+  return {
+    tagName: "g",
+    attributes,
+    children,
+  };
 }
