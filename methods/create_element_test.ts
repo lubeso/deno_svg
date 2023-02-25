@@ -109,14 +109,11 @@ function createElementDefinition(
   options: CreateElementDefinitionOptions,
 ): ElementDefinition {
   // Arrange
-  const {
-    hasAttributes,
-    hasChildren,
-  } = options;
+  const children = options.hasChildren
+    ? new Array<ElementDefinition>()
+    : undefined;
   // Act
-  const attributes = hasAttributes ? { "data-test": "test" } : undefined;
-  const children = hasChildren ? new Array<ElementDefinition>() : undefined;
-  if (hasChildren) {
+  if (options.hasChildren) {
     for (let i = 0; i < EXPECTED_NUM_CHILDREN; i++) {
       children!.push({ tagName: "g" });
     }
@@ -124,7 +121,7 @@ function createElementDefinition(
   // Return
   return {
     tagName: "g",
-    attributes,
+    attributes: options.hasAttributes ? EXPECTED_ATTRIBUTES : {},
     children,
   };
 }
