@@ -72,7 +72,7 @@ function getInnerText(
   for (const child of children) {
     text += "\n";
     text += typeof child === "object"
-      ? toText(element, currentDepth + 1)
+      ? toText(child, currentDepth + 1)
       : indent(child, currentDepth + 1);
   }
   if (children.length > 0) {
