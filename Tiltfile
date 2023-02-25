@@ -13,3 +13,13 @@ local_resource(
     "--allow-write"
   ]
 )
+
+local_resource(
+  name="gapplin",
+  cmd=[
+    "open",
+    "-a",
+    "Gapplin.app",
+    "canvas.svg",
+  ]
+)
