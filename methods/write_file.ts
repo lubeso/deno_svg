@@ -16,11 +16,12 @@ export interface WriteFileOptions {
 
 /**
  * Write the given element to a file.
+ * @returns full path to exported file
  */
 export function writeFile(
   _svg: ElementReference<"svg">,
-  _options: WriteFileOptions = getDefaultWriteFileOptions(),
-) {
+  _options?: WriteFileOptions,
+): Promise<string> {
   throw new Error("not implemented yet");
 }
 
