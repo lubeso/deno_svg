@@ -34,7 +34,8 @@ describe("toText()", () => {
     const expected = [
       `<text`,
       `  data-test="test"`,
-      `></text>`,
+      `>`,
+      `</text>`,
     ].join("\n");
     assertEquals(text, expected);
   });
