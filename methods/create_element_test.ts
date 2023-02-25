@@ -1,8 +1,8 @@
 import { assert, assertEquals } from "@std:testing/asserts.ts";
 import { describe, it } from "@std:testing/bdd.ts";
 import { NAMESPACE_URI } from "../constants.ts";
-import { createElement } from "../methods.ts";
 import type { ElementDefinition } from "../types.ts";
+import { createElement } from "./create_element.ts";
 
 /** Testing strategy
  *  - specify =0 attributes and =0 children
