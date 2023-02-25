@@ -9,88 +9,62 @@ export function toText(
   currentDepth = 0,
 ): string {
   // Arrange
-  let text = "";
+  const currentLines = new Array<string>();
   // Act
-  text += getOpeningTagText(element, currentDepth);
-  text += getInnerText(element, currentDepth);
-  text += getClosingTagText(element);
-  // Return
-  return text;
-}
-
-/**
- * Helper method.
- */
-function getOpeningTagText(
-  element: ElementReference,
-  currentDepth: number,
-): string {
-  // Arrange
-  const { tagName } = element;
-  let text = "";
-  // Act
-  text += indent(
-    `<${tagName}${getAttributesText(element, currentDepth)}>`,
+  addLines(
+    currentLines,
+    element,
     currentDepth,
   );
-
   // Return
-  return text;
+  return currentLines.join("\n");
 }
 
-function getAttributesText(
+function addLines(
+  currentLines: Array<string>,
   element: ElementReference,
-  currentDepth: number,
-): string {
+  currentDepth = 0,
+): void {
   // Arrange
-  const { attributes } = element;
-  let text = "";
+  const hasAttributes = Object.keys(element.attributes).length > 0;
+  const hasChildren = element.children.length > 0;
+  const isEmpty = !hasAttributes && !hasChildren;
   // Act
-  const entries = Object.entries(attributes);
-  for (const [key, value] of entries) {
-    text += "\n";
-    text += indent(`${key}="${value}"`, currentDepth + 1);
+  if (isEmpty) {
+    currentLines.push(
+      indent(`<${element.tagName}></${element.tagName}>`, currentDepth),
+    );
+  } else {
+    // Opening tag
+    if (!hasAttributes) {
+      currentLines.push(
+        indent(`<${element.tagName}>`, currentDepth),
+      );
+    } else {
+      currentLines.push(
+        indent(`<${element.tagName}`, currentDepth),
+      );
+      for (const [key, value] of Object.entries(element.attributes)) {
+        currentLines.push(
+          indent(`${key}="${value}"`, currentDepth + 1),
+        );
+      }
+      currentLines.push(
+        indent(`>`, currentDepth),
+      );
+    }
+    for (const child of element.children) {
+      if (typeof child === "object") {
+        addLines(currentLines, child, currentDepth + 1);
+      } else {
+        currentLines.push(
+          indent(child, currentDepth + 1),
+        );
+      }
+    }
+    // Closing tag
+    currentLines.push(
+      indent(`</${element.tagName}>`, currentDepth),
+    );
   }
-  if (entries.length > 0) {
-    text += "\n";
-  }
-  // Return
-  return text;
-}
-
-/**
- * Helper method.
- */
-function getInnerText(
-  element: ElementReference,
-  currentDepth: number,
-): string {
-  // Arrange
-  const { children } = element;
-  let text = "";
-  // Act
-  for (const child of children) {
-    text += "\n";
-    text += typeof child === "object"
-      ? toText(child, currentDepth + 1)
-      : indent(child, currentDepth + 1);
-  }
-  if (children.length > 0) {
-    text += "\n";
-  }
-  // Return
-  return text;
-}
-
-/**
- * Helper method.
- */
-function getClosingTagText(element: ElementReference): string {
-  // Arrange
-  const { tagName } = element;
-  let text = "";
-  // Act
-  text += `</${tagName}>`;
-  // Return
-  return text;
 }
