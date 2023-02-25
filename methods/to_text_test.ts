@@ -41,8 +41,8 @@ describe("toText()", () => {
   it("element has >0 children", () => {
     // Arrange
     const element = createElementReference({
-      hasAttributes: true,
-      hasChildren: false,
+      hasAttributes: false,
+      hasChildren: true,
     });
     // Act
     const text = toText(element);
