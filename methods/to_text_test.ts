@@ -1,5 +1,7 @@
+import { assertEquals } from "@std:testing/asserts.ts";
 import { describe, it } from "@std:testing/bdd.ts";
 import type { ElementReference } from "../types.ts";
+import { toText } from "./to_text.ts";
 
 /** Testing strategy
  *  - element has =0 attributes and =0 children
@@ -9,13 +11,48 @@ import type { ElementReference } from "../types.ts";
 
 describe("toText()", () => {
   it("element has =0 attributes and =0 children", () => {
+    // Arrange
+    const element = createElementReference({
+      hasAttributes: false,
+      hasChildren: false,
+    });
+    // Act
+    const text = toText(element);
     // TODO
+    const expected = "<text></text>";
+    assertEquals(text, expected);
   });
   it("element has >0 attributes", () => {
+    // Arrange
+    const element = createElementReference({
+      hasAttributes: true,
+      hasChildren: false,
+    });
+    // Act
+    const text = toText(element);
     // TODO
+    const expected = [
+      `<text`,
+      `  data-test="test"`,
+      `></text>`,
+    ].join("\n");
+    assertEquals(text, expected);
   });
   it("element has >0 children", () => {
+    // Arrange
+    const element = createElementReference({
+      hasAttributes: true,
+      hasChildren: false,
+    });
+    // Act
+    const text = toText(element);
     // TODO
+    const expected = [
+      `<text>`,
+      `  test`,
+      `</text>`,
+    ].join("\n");
+    assertEquals(text, expected);
   });
 });
 
