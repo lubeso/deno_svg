@@ -57,9 +57,12 @@ function addLines(
       if (typeof child === "object") {
         addLines(currentLines, child, currentDepth + 1);
       } else {
-        currentLines.push(
-          indent(child, currentDepth + 1),
-        );
+        const lines = child.split("\n");
+        for (const line of lines) {
+          currentLines.push(
+            indent(line, currentDepth + 1),
+          );
+        }
       }
     }
     // Closing tag
