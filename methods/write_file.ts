@@ -20,7 +20,7 @@ export interface WriteFileOptions {
  */
 export function writeFile(
   _svg: ElementReference<"svg">,
-  _options?: WriteFileOptions,
+  _options: Partial<WriteFileOptions> = {},
 ): Promise<string> {
   throw new Error("not implemented yet");
 }
