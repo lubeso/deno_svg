@@ -1,5 +1,6 @@
 import { assertEquals } from "@std:testing/asserts.ts";
 import { afterAll, beforeAll, describe, it } from "@std:testing/bdd.ts";
+import { NAMESPACE_URI } from "../constants.ts";
 import { createElement } from "./create_element.ts";
 import { writeFile } from "./write_file.ts";
 
@@ -42,6 +43,7 @@ describe("writeFile()", () => {
     // Assert
     const expected = [
       `<svg`,
+      `  xmlns="${NAMESPACE_URI}"`,
       `  width="10px"`,
       `  height="10px"`,
       `>`,
@@ -52,6 +54,7 @@ describe("writeFile()", () => {
       `  >`,
       `    test`,
       `  </text>`,
+      `</svg>`,
     ].join("\n");
     assertEquals(actual, expected);
   });
