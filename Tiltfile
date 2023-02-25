@@ -5,5 +5,11 @@ local_resource(
 
 local_resource(
   name="tests",
-  serve_cmd="deno test --watch"
+  serve_cmd=[
+    "deno",
+    "test",
+    "--watch",
+    "--allow-read",
+    "--allow-write"
+  ]
 )
