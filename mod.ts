@@ -1,4 +1,11 @@
-export * from "./constants.ts";
-export * from "./methods/mod.ts";
-export * from "./types.ts";
-export * from "./utils.ts";
+import { createElement } from "./create_element.ts";
+import { toText } from "./to_text.ts";
+import { writeFile } from "./write_file.ts";
+
+export const SVG = {
+  createElement,
+  toText,
+  writeFile,
+};
+
+export default SVG;
