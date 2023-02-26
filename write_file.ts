@@ -1,4 +1,4 @@
-import { join } from "./deps.ts";
+import { join } from "https://deno.land/std@0.178.0/path/mod.ts";
 import { toText } from "./to_text.ts";
 import type { ElementReference } from "./types.ts";
 
