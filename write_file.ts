@@ -1,6 +1,6 @@
-import { join } from "../deps.ts";
-import type { ElementReference } from "../types.ts";
+import { join } from "./deps.ts";
 import { toText } from "./to_text.ts";
+import type { ElementReference } from "./types.ts";
 
 /**
  * Available configuration options for SVG file export
