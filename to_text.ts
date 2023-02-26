@@ -1,5 +1,5 @@
-import type { ElementReference } from "../types.ts";
-import { indent } from "../utils.ts";
+import type { ElementReference } from "./types.ts";
+import { indent } from "./utils.ts";
 
 /**
  * Return a valid SVG text representation of the given element.

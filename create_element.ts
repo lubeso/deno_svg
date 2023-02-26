@@ -1,5 +1,5 @@
-import { NAMESPACE_URI } from "../constants.ts";
-import type { ElementDefinition, ElementReference } from "../types.ts";
+import { NAMESPACE_URI } from "./constants.ts";
+import type { ElementDefinition, ElementReference } from "./types.ts";
 
 /**
  * Create a new element according to the given definition.

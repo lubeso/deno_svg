@@ -1,6 +1,6 @@
 import { assertEquals } from "@std:testing/asserts.ts";
 import { afterAll, beforeAll, describe, it } from "@std:testing/bdd.ts";
-import { NAMESPACE_URI } from "../constants.ts";
+import { NAMESPACE_URI } from "./constants.ts";
 import { createElement } from "./create_element.ts";
 import { writeFile } from "./write_file.ts";
 

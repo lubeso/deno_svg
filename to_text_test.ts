@@ -1,7 +1,7 @@
 import { assertEquals } from "@std:testing/asserts.ts";
 import { describe, it } from "@std:testing/bdd.ts";
-import type { ElementReference } from "../types.ts";
 import { toText } from "./to_text.ts";
+import type { ElementReference } from "./types.ts";
 
 /** Testing strategy
  *  - element has =0 attributes and =0 children
