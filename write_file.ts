@@ -3,31 +3,19 @@ import { toText } from "./to_text.ts";
 import type { ElementReference } from "./types.ts";
 
 /**
- * Available configuration options for SVG file export
- */
-export interface WriteFileOptions {
-  /**
-   * Name of this file (without extension)
-   */
-  name: string;
-  /**
-   * Target directory for exporting this file
-   */
-  basePath: string;
-}
-
-/**
  * Write the given element to a file.
  * @returns full path to exported file
  */
 export async function writeFile(
   svg: ElementReference<"svg">,
-  options: Partial<WriteFileOptions> = {},
+  options: {
+    name?: string;
+    basePath?: string;
+  } = {},
 ): Promise<string> {
   // Arrange
-  const defaultOptions = getDefaultWriteFileOptions();
-  const name = options.name ?? defaultOptions.name;
-  const basePath = options.basePath ?? defaultOptions.basePath;
+  const name = options.name ?? getRandomName();
+  const basePath = options.basePath ?? ".";
   // Act
   const text = toText(svg);
   const path = join(basePath, `${name}.svg`);
@@ -39,11 +27,8 @@ export async function writeFile(
 /**
  * Helper method.
  */
-function getDefaultWriteFileOptions(): WriteFileOptions {
+function getRandomName(): string {
   const uuid = crypto.randomUUID();
   const [prefix, ..._] = uuid.split("-");
-  return {
-    name: prefix.toLocaleLowerCase(),
-    basePath: ".",
-  };
+  return prefix.toLocaleLowerCase();
 }
